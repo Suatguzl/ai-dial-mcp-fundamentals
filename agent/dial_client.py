@@ -95,7 +95,14 @@ class DialClient:
                 #   - content=str(tool_result)
                 #   - tool_call_id=tool_call["id"]
                 # 3. Append created message to `messages`
-                raise NotImplementedError()
+                tool_result = await self.mcp_client.call_tool(tool_name, tool_args)
+                messages.append(
+                    Message(
+                    role=Role.TOOL,
+                    content=str(tool_result),
+                    tool_call_id=tool_call["id"]
+                    )
+                )
             except Exception as e:
                 error_msg = f"Error: {e}"
                 print(f"Error: {error_msg}")

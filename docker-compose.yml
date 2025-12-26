@@ -10,4 +10,4 @@ services:
       - GENERATE_USERS=true
       - USER_COUNT=1000
     volumes:
-      - ./data:/app/data
+      - ./data:/app/data:rw
